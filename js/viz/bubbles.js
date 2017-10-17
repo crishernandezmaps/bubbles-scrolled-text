@@ -43,7 +43,7 @@ function drawChart(data) {
     .attr("height", '100%')
     .attr('viewBox','0 0 '+Math.min(width)+' '+Math.min(height))
     .attr("preserveAspectRatio", "xMinYMin meet")
-    // .call(d3.zoom().on("zoom", function () { svg.attr("transform", d3.event.transform) }))
+    // .call(d3.zoom().on("zoom", function () { svg.attr("'rgba(113,214,231,0.8)'form", d3.event.'rgba(113,214,231,0.8)'form) }))
     .append('g')
     .attr('transform', 'translate(0,0)');
 
@@ -55,10 +55,20 @@ function drawChart(data) {
       alpha = 0.23;
 
   var pallete = ["#ffc60c", "#cc5810", "#558930", "#1f86cc", "#7f3e98", "#717770", "#ffc60c", "#71d6e7", "#f3800d"];
-  var pallete2 = ["#ffe6e6", "#ffb3b3", "#ff8080", "#ff4d4d", "#ff1a1a", "#e60000", "#b30000", "#800000", "#4d0000"];
   var color = d3.scaleOrdinal(pallete);
-  var color2 = d3.scaleOrdinal(pallete2);
   var filling = function(d) { return color(d.region) };
+  var colorOn = 'rgba(243,128,13,0.8)';
+  var colorOff = 'rgba(113,214,231,0.8)';
+  var colorStroke = 'rgba(218,218,217,0.7)';
+  var colorTarapaca = pallete[0]
+  var colorAntofagasta = pallete[1]
+  var colorCoquimbo = pallete[2]
+  var colorValparaiso = pallete[3]
+  var colorSantiago = pallete[4]
+  var colorMaule = pallete[5]
+  var colorBioBio = pallete[6]
+  var colorAraucania = pallete[7]
+  var colorLosRios = pallete[8]
 
   var forceX = d3.forceX(function() { return width / 2 }).strength(strengthValue).x(width * .5)
   var forceY = d3.forceY(function() { return height / 2 }).strength(strengthValue).y(height * .5)
@@ -108,9 +118,8 @@ function drawChart(data) {
     .append('circle')
     .attr('class', 'gi')
     .attr('r', radiusCollide)
-    .attr("fill", function(d) { return color(d.region) })
-    .attr("fill", function(d) { return color(d.region) })
-    .attr('stroke', function(d) { return d3.rgb(color(d.region)).darker(0.8) })
+    .attr("fill", filling)
+    .attr('stroke', function(d) { return colorStroke })
     .attr("id", function(d) { return d.id_gi })
     .on('click', hide)
     .on('mouseover', tool_tip.show)
@@ -128,8 +137,8 @@ function drawChart(data) {
       .force('collide', colliding)
       .restart();
     circles
-      .attr("fill", filling)
-      .attr('stroke', function(d) { return d3.rgb(color(d.region)).darker() })
+      .attr("fill", colorOff)
+      .attr('stroke', colorStroke )
       .attr('r', radiusCollide)
       .on('click',hide);
   })
@@ -148,13 +157,13 @@ function drawChart(data) {
       circles
         .attr("r", function(d) {
           if (id=='#lab') { return d.labs };
-          if (id=='#serv') { return d.services };
-          if (id=='#prog') { return d.programmes };
-          if (id=='#proj') { return d.projects };
-          if (id=='#publ') { return d.publications };
-          if (id=='#rese') { return d.researchers };
-          if (id=='#netn') { return d.netnacional };
-          if (id=='#nete') { return d.netinternacional };
+          if (id=='#serv') { return d.services * 3};
+          if (id=='#prog') { return d.programmes * 5.5};
+          if (id=='#proj') { return d.projects * 2.3};
+          if (id=='#publ') { return d.publications * 0.8};
+          if (id=='#rese') { return d.researchers * 3.3};
+          if (id=='#netn') { return d.netnacional * 3};
+          if (id=='#nete') { return d.netinternacional * 2.5};
         })
         .attr("fill",filling)
         .on('click',hide);
@@ -176,126 +185,126 @@ function drawChart(data) {
     if(id=='#tarapaca') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Tarapaca') { return color(d.region[0]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Tarapaca') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Tarapaca') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Tarapaca') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Tarapaca') { return color(d.region[0]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Tarapaca') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Tarapaca') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Tarapaca') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#antofagasta') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Antofagasta') { return color(d.region[1]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Antofagasta') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Antofagasta') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Antofagasta') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Antofagasta') { return color(d.region[1]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Antofagasta') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Antofagasta') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Antofagasta') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#coquimbo') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Coquimbo') { return color(d.region[2]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Coquimbo') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Coquimbo') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Coquimbo') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Coquimbo') { return color(d.region[2]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Coquimbo') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Coquimbo') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Coquimbo') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#valparaiso') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Valparaiso') { return color(d.region[3]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Valparaiso') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Valparaiso') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Valparaiso') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Valparaiso') { return color(d.region[3]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Valparaiso') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Valparaiso') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Valparaiso') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#santiago') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Santiago') { return color(d.region[4]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Santiago') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Santiago') { return colorOn } else { return  colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Santiago') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Santiago') { return color(d.region[4]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Santiago') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Santiago') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Santiago') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#maule') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Maule') { return color(d.region[5]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Maule') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Maule') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Maule') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Maule') { return color(d.region[5]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Maule') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Maule') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Maule') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#biobio') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Bio-Bio') { return color(d.region[6]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Bio-Bio') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Bio-Bio') { return colorOn} else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Bio-Bio') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Bio-Bio') { return color(d.region[6]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Bio-Bio') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Bio-Bio') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Bio-Bio') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#araucania') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Araucania') { return color(d.region[7]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Araucania') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Araucania') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Araucania') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Araucania') { return color(d.region[7]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Araucania') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Araucania') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Araucania') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
     if(id=='#losrios') {
       d3.select(id).on('mouseover', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Los Rios') { return color(d.region[8]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Los Rios') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Los Rios') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Los Rios') { return colorStroke }})
           .on('click',hide);
       }).show
       d3.select(id).on('mouseout', function() {
         circles
-          .attr("fill",function(d) { if (d.region == 'Los Rios') { return color(d.region[8]) } else { return 'white' }})
-          .attr("stroke",function(d) { if (d.region == 'Los Rios') { return 'black'} else { return 'white' }})
+          .attr("fill",function(d) { if (d.region == 'Los Rios') { return colorOn } else { return colorOff } })
+          .attr("stroke",function(d) { if (d.region == 'Los Rios') { return colorStroke }})
           .on('click',hide);
       }).hide
     }
@@ -324,13 +333,13 @@ function drawChart(data) {
   //   .enter()
   //   .append('g')
   //   .attr('class', 'legend')
-  //   .attr('transform', function(d, i) {
+  //   .attr(''rgba(113,214,231,0.8)'form', function(d, i) {
   //     var height = legendRectSize + legendSpacing;
   //     var offset =  height * color.domain().length / 150;
   //     var offset =  height / 2;
   //     var horz = legendRectSize;
   //     var vert = i * height - offset;
-  //     return 'translate(' + horz + ',' + vert + ')';
+  //     return ''rgba(113,214,231,0.8)'late(' + horz + ',' + vert + ')';
   //   });
   //
   // legend.append('rect')
