@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIA+S</title>
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="img/favicons/manifest.json">
+  <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Graph -->
+  <meta property="og:site_name" content="http://www.piaschile.cl/" />
+  <meta property="og:title" content="PIA+S">
+  <meta property="og:longTitle" content="Programa de innovacion en alimentos mas saludables.">
+  <meta property="og:image" content="https://pbs.twimg.com/profile_images/591679684825456640/I-f61hlu_400x400.png" />
+  <meta property="og:description" content="Somos una iniciativa de FIA y CORFO cuyo objetivo es impulsar una Industria de Alimentos más Saludables en Chile." />
+  <meta name="description" content="Somos una iniciativa de FIA y CORFO cuyo objetivo es impulsar una Industria de Alimentos más Saludables en Chile.">
+  <meta name="keywords" content="PIA+S Chile CORFO FIA Innovacion Gobierno" />
+  <meta property="og:locale" content="es_CH" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <!-- Twitter -->
+  <meta name="twitter:site" content="@PIASChile">
+  <meta name="twitter:title" content="Programa de innovacion en alimentos mas saludables">
+  <meta name="twitter:description" content="Somos una iniciativa de FIA y CORFO cuyo objetivo es impulsar una Industria de Alimentos más Saludables en Chile.">
+  <meta name="twitter:creator" content="@PIASChile">
+  <meta name="twitter:image:src" content="https://pbs.twimg.com/profile_images/591679684825456640/I-f61hlu_400x400.png">
+  <meta name="twitter:domain" content="http://www.piaschile.cl">
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/ghotam-rounded/stylesheet.css">
+</head>
+
+<body>
+
+  <section class="sec">
+    <div id="bubbles"></div><!--Viz-->
+    <div id="commands"><!--Buttons-->
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary btn-sm" id='lab'>Laboratorios</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='serv'>Servicios</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='prog'>Programas</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='proj'>Proyectos</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='publ'>Publicaciones</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='rese'>Investigadores</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='netn'>Nacionales</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='nete'>Internacionales</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='all'>Reiniciar</button>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary btn-sm" id='tarapaca'>Tarapaca</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='antofagasta'>Antofagasta</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='coquimbo'>Coquimbo</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='valparaiso'>Valparaiso</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='santiago'>Santiago</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='maule'>Maule</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='biobio'>Bio-Bio</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='araucania'>Araucania</button>
+        <button type="button" class="btn btn-secondary btn-sm" id='losrios'>Los Rios</button>
+      </div>
+          <!-- <button type="button" class="btn btn-default" id='lab'>Labs</button> -->
+          <!-- <div class="btn-group"> -->
+            <!-- <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Selecciona<span class="caret"></span></button> -->
+            <!-- <ul class="dropdown-menu"> -->
+              <!-- <li role="separator" class="divider"><span class="menuTitle">A. Tematicas</span></li>
+              <li class="but" id="inoc"><a href="#">Inocuidad</a></a></li>
+              <li class="but" id="ingc"><a href="#">Ingredientes Criticos</a></a></li>
+              <li class="but" id="funa"><a href="#">Funcionalidad</a></a></li> -->
+            <!-- </ul> -->
+      </div>
+      <div id="hidden"></div>
+    </div>
+  </section>
+
+  <!-- D3 -->
+  <script src="js/d3.v4.min.js"></script>
+  <script src="js/fisheye.js"></script>
+  <script src="js/d3-tip.js"></script>
+  <script src="js/d3-legend.min.js"></script>
+  <!-- Tabletop -->
+  <script src="js/tabletop.js"></script>
+  <!-- Custom Visualizations -->
+  <script src="js/viz/bubbles.js"></script>
+  <!-- Libraries -->
+  <script src="js/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="js/awesome.js"></script>
+
+  <!-- Menu change according to the option -->
+  <script type="text/javascript">
+    $(function() {
+      $(".dropdown-menu li a").click(function() {
+        $(".btn:first-child").text($(this).text());
+        $(".btn:first-child").val($(this).text());
+      });
+    });
+  </script>
+
+
+
+</body>
+
+</html>
