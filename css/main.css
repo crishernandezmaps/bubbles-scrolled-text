@@ -1,103 +1,17 @@
+/*/////// General //////////*/
 * {
   margin: 0;
   padding: 0;
 }
 
 html, body {
+  width: 100%;
   height: 100%;
   background: rgba(255, 255, 255,1);
   font-family: 'GothamRoundedLight', Arial, Helvetica, sans-serif;
   font-family: 'GothamRoundedBook', Arial, Helvetica, sans-serif;
   font-family: 'GothamRoundedMedium', Arial, Helvetica, sans-serif;
   color: #717770;
-}
-
-.headup {
-  background: #6dd600;
-}
-
-#logo {
-  padding-left: 1%;
-  width: 250px;
-  height: 120px;
-}
-
-#piashead {
-  height: 100%;
-  color: #fff;
-  background: #45aee0;
-}
-
-.navbar-brand {
-  display: inline;
-}
-
-.but {
-  margin-top: 1%;
-  width: 100%;
-}
-
-.bts {
-  text-align: center;
-}
-
-.menuTitle {
-  font-weight: bold;
-}
-
-.sec {
-  text-align: center;
-  position: relative;
-  width: 100%;
-  height: 80%;
-  display: inline-block;
-}
-
-.sec::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-#commands {
-  position: relative;
-  text-align: center;
-}
-
-#bubbles {
-  width: 80%;
-  text-align: center;
-  position: relative;
-  margin: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.gi:hover {
-  opacity: 0.6;
-  filter: alpha(opacity=60); /* For IE8 and earlier */
-}
-
-.btn {
-  background: #dadad9;
-}
-
-.dropdown-menu {
-  padding: 3%;
-}
-
-#hidden {
-  padding-top: 10%;
-  width: 90%;
-  margin: 0 auto;
-  text-align: left;
-  font-size: 0.8em;
-}
-
-.legend {
-  font-size: 0.8em;
 }
 
 a {
@@ -113,8 +27,71 @@ a:hover {
   color: #9f9f9e;
 }
 
-/*//////////////////////*/
+section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*border-bottom: 1px dashed grey;*/
+}
 
+/*/////// Bubbles //////////*/
+#bubbles {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: fixed;
+  display: flex;
+  margin: 0;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.gi:hover {
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+/*/////// Content //////////*/
+#content {
+  position: relative;
+  width: 30%;
+  overflow-y: scroll;
+  background: rgba(247,247,247,0.4);
+  top: 15%;
+  left: 65%;
+  padding: 1%;
+}
+
+/*/////// Hidden Content //////////*/
+#hidden {
+  border-top: 1px solid grey;
+  width: 100%;
+  text-align: left;
+  font-size: 0.8em;
+  position: relative;
+}
+
+/*/////// Buttons //////////*/
+#commands {
+  position: relative;
+  text-align: center;
+}
+
+.btn {
+  background: #dadad9;
+}
+
+#cat, #reg, #top {
+  width: 100%;
+  display:inline-block;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*/////// Tips //////////*/
 .d3-tip {
   line-height: 1;
   padding: 6px;
@@ -125,8 +102,13 @@ a:hover {
   box-shadow: 1px 3px 1px #dadad9;
 }
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.d3-tip:after { /* small triangle */
   box-sizing: border-box;
   display: inline;
   font-size: 10px;
@@ -138,21 +120,29 @@ a:hover {
   text-align: center;
 }
 
-/* Style northward tooltips specifically */
-.d3-tip.n:after {
-  margin: -2px 0 0 0;
-  top: 100%;
-  left: 0;
+/*/////// Legend //////////*/
+rect {
+  stroke-width: 2;
 }
 
-/* NEW */
-rect {                                                      /* NEW */
-  stroke-width: 2;                                          /* NEW */
+.legend {
+  font-size: 0.8em;
 }
 
 /*/////// AXIS //////////*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
 .line {
   fill: none;
-  stroke: black;
-  stroke-width: 2px;
+  stroke: #444;
+  stroke-width: 1.5px;
 }

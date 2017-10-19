@@ -14,11 +14,9 @@ Selecciona/Pelotas/Descripción.
 // 5. Hacer que los links clickeables se abran en nuevas pestañas, no en la misma web PIA+S: DONE!!!!
 
 function drawChart(data) {
-  // var width = 950,
-  //     height = 700;
 
-  var width = window.innerWidth,
-	height = window.innerHeight;
+  var width = window.innerWidth;
+	var height = window.innerHeight;
 
   var regiones = ['Tarapaca','Antofagasta','Coquimbo','Valparaiso','Santiago','Maule','Bio-Bio','Araucania','Los Rios']
 
@@ -41,7 +39,7 @@ function drawChart(data) {
     .attr('class', 'bubls')
     .attr("width", '100%')
     .attr("height", '100%')
-    .attr('viewBox','0 0 '+Math.min(width)+' '+Math.min(height))
+    .attr('viewBox','0 0 ' + Math.min(width) + ' ' + Math.min(height))
     .attr("preserveAspectRatio", "xMinYMin meet")
     // .call(d3.zoom().on("zoom", function () { svg.attr("'rgba(113,214,231,0.8)'form", d3.event.'rgba(113,214,231,0.8)'form) }))
     .append('g')
@@ -50,10 +48,9 @@ function drawChart(data) {
   svg.call(tool_tip);
 
   // Settings
-  var radiusCollide = 10,
-      strengthValue = 0.06,
-      alpha = 0.23;
-
+  var radiusCollide = 25;
+  var strengthValue = 0.06;
+  var alpha = 0.23;
   var pallete = ["#ffc60c", "#cc5810", "#558930", "#1f86cc", "#7f3e98", "#717770", "#ffc60c", "#71d6e7", "#f3800d"];
   var color = d3.scaleOrdinal(pallete);
   var filling = function(d) { return color(d.region) };
@@ -72,7 +69,7 @@ function drawChart(data) {
 
   var forceX = d3.forceX(function() { return width / 2 }).strength(strengthValue).x(width * .5)
   var forceY = d3.forceY(function() { return height / 2 }).strength(strengthValue).y(height * .5)
-  var colliding = d3.forceCollide(function() { return radiusCollide * 5})
+  var colliding = d3.forceCollide(function() { return radiusCollide * 1.2})
 
   var simulation = d3.forceSimulation()
     .velocityDecay(0.5)
@@ -90,17 +87,18 @@ function drawChart(data) {
   function ticked() {
     circles
       .attr('cx', function(d) { return d.x })
-      .attr('cy', function(d) {
-        if (d.region == regiones[0]) { return ypos*sep; }
-        if (d.region == regiones[1]) { return ypos*(sep*2); }
-        if (d.region == regiones[2]) { return ypos*(sep*3); }
-        if (d.region == regiones[3]) { return ypos*(sep*4); }
-        if (d.region == regiones[4]) { return ypos*(sep*5); }
-        if (d.region == regiones[5]) { return ypos*(sep*6); }
-        if (d.region == regiones[6]) { return ypos*(sep*7); }
-        if (d.region == regiones[7]) { return ypos*(sep*8); }
-        if (d.region == regiones[8]) { return ypos*(sep*9); }
-      })
+      .attr('cy', function(d) { return d.y })
+      // .attr('cy', function(d) {
+      //   if (d.region == regiones[0]) { return ypos*sep; }
+      //   if (d.region == regiones[1]) { return ypos*(sep*2); }
+      //   if (d.region == regiones[2]) { return ypos*(sep*3); }
+      //   if (d.region == regiones[3]) { return ypos*(sep*4); }
+      //   if (d.region == regiones[4]) { return ypos*(sep*5); }
+      //   if (d.region == regiones[5]) { return ypos*(sep*6); }
+      //   if (d.region == regiones[6]) { return ypos*(sep*7); }
+      //   if (d.region == regiones[7]) { return ypos*(sep*8); }
+      //   if (d.region == regiones[8]) { return ypos*(sep*9); }
+      // })
   }
 
   var hide = function(d) {d3.select("#hidden").html('<h4>'+d.grupo+'</h2>' + '<br/>'
@@ -319,10 +317,6 @@ function drawChart(data) {
   buttonsGeo('#biobio')
   buttonsGeo('#araucania')
   buttonsGeo('#losrios')
-
-  ///// AXIS ///////////////////////////////////////////////////
-
-
 
   ///// Legend ///////////////////////////////////////////////////
   // var legendRectSize = 20;
